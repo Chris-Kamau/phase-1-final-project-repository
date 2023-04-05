@@ -45,21 +45,3 @@ function deleteLiquor(id) {
     console.error('Error deleting liquor:', error);
   });
 }
-// function addLiquor() {
-//   const form = document.querySelector('#add-liquor-form');
-//   const data = new FormData(form);
-
-//   fetch('http://localhost:5000/liqours', {
-//     method: 'POST',
-//     body: data
-//   })
-//   .then(res => res.json())
-//   .then((liquor) => {
-//     displayLiquor(liquor);
-//     form.reset();
-//   })
-//   .catch((error) => {
-//     console.error('Error adding liquor:', error);
-//   });
-// }
-
