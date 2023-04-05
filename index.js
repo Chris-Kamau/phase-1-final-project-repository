@@ -22,17 +22,16 @@ function displayLiquor(liquor){
         <h5 class="card-brand">Type: ${liquor.brand}</h5>
         <p class="card-text"> Available quantity is ${liquor.quantity}</p>
         <a href="#" class="btn btn-primary">Add to cart</a>
-        <button type="button" class="btn btn-danger" onclick="deleteLiquor(${liquor.id})">Delete</button>
       </div>
     `
   })
 
-  document.querySelector("#item-list").append(card)
+  document.querySelector("#item-list").append(card) 
 }
 
 // Function to fetch products from db.json
 function fetchLiquors(){
-fetch("http://localhost:5000/liqours")
+fetch("http://localhost:5000/liquors")
 .then(res => res.json())
 .then((liquors) => {
   liquors.forEach((liquor) => {
@@ -45,18 +44,15 @@ fetchLiquors()
 
 // Function to delete product
 function deleteLiquor(id) {
-  fetch(`http://localhost:5000/liqours/${id}`, {
-    method: 'DELETE'
-  })
-  .then(() => {
-    const card = document.querySelector(`[data-id="${id}"]`);
-    if (card) {
-      card.remove();
+  fetch(`http://localhost:5000/liquors/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type" : "application/json"
     }
   })
-  .catch((error) => {
-    console.error('Error deleting liquor:', error);
-  });
+  .then(res => res.json())
+  .then(data => console.log(data))
+    
 }
 
 // function to create table 
@@ -64,21 +60,27 @@ function addLiquor(liquor) {
   let tableRow = document.createElement("tr")
   tableRow.id = "table-row"
   tableRow.innerHTML = `
-  <th scope="row">${liquor.id}</th>
-        <td>${liquor.image}</td>
-        <td>${liquor.name}</td>
-        <td>${liquor.price}</td>
-        <td>${liquor.description}</td>
-        <td>${liquor.origin}</td>
-        <td>${liquor.brand}</td>
-        <td>${liquor.quantity}</td>
-        <td><button class="btn btn-success">Edit</button></td>
+    <th scope="row">${liquor.id}</th>
+    <td>${liquor.image}</td>
+    <td>${liquor.name}</td>
+    <td>${liquor.price}</td>
+    <td>${liquor.description}</td>
+    <td>${liquor.origin}</td>
+    <td>${liquor.brand}</td>
+    <td>${liquor.quantity}</td>
+    <td><button class="btn btn-success">Edit</button></td>
+    <td><button class="btn btn-danger" id="delete">Delete</button></td>
   `
+  let deleteButton = tableRow.querySelector("#delete")
+  deleteButton.addEventListener("click", () => {
+    deleteLiquor(liquor.id)
+    tableRow.remove()
+  })
   document.querySelector("#table-body").append(tableRow)
 }
 
 function getLiquors() {
-  fetch("http://localhost:5000/liqours")
+  fetch("http://localhost:5000/liquors")
   .then(res => res.json())
   .then(liquors => 
     liquors.forEach((liquor) => {
@@ -112,7 +114,7 @@ collectFormData()
 
 // POST to database
 function postLiquors() {
-  fetch("http://localhost:5000/liqours", {
+  fetch("http://localhost:5000/liquors", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
