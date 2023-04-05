@@ -89,6 +89,16 @@
       "brand": "Wine",
       "price": 5100,
       "quantity": 25
+    },
+    {
+      "image": "https://jayswines.com/wp-content/uploads/2015/04/ciroc-vodka.jpg",
+      "name": "Ciroc 1 Litre",
+      "price": "6000",
+      "description": "Lusciously smooth & playfully sophisticated, Ciroc Vodka is a commitment to superior taste, quality and a fun-loving lifestyle.",
+      "origin": "France",
+      "brand": "Vodka",
+      "quantity": "25",
+      "id": 10
     }
   ]
 }

@@ -1,3 +1,5 @@
+// function to display liquor
+
 function displayLiquor(liquor){
   let card = document.createElement("li")
   card.className = "card col-2 p-0 m-4"
@@ -28,7 +30,7 @@ function displayLiquor(liquor){
   document.querySelector("#item-list").append(card)
 }
 
-
+// Function to fetch products from db.json
 function fetchLiquors(){
 fetch("http://localhost:5000/liqours")
 .then(res => res.json())
@@ -41,6 +43,7 @@ fetch("http://localhost:5000/liqours")
 
 fetchLiquors()
 
+// Function to delete product
 function deleteLiquor(id) {
   fetch(`http://localhost:5000/liqours/${id}`, {
     method: 'DELETE'
@@ -56,6 +59,7 @@ function deleteLiquor(id) {
   });
 }
 
+// function to create table 
 function addLiquor(liquor) {
   let tableRow = document.createElement("tr")
   tableRow.id = "table-row"
@@ -85,12 +89,13 @@ function getLiquors() {
 getLiquors()
 
 // function to collect data
+let formData;
 
 function collectFormData() {
   let form = document.querySelector("#form")
   form.addEventListener("submit", (e) => {
     e.preventDefault()
-    let formData = {
+    formData = {
       image: e.target.image.value,
       name: e.target.name.value,
       price: e.target.price.value,
@@ -100,7 +105,20 @@ function collectFormData() {
       quantity: e.target.quantity.value
 
     }
-    console.log(formData)
+    postLiquors()
   })
 }
 collectFormData()
+
+// POST to database
+function postLiquors() {
+  fetch("http://localhost:5000/liqours", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(formData)
+  })
+  .then(res => res.json())
+  .then(products => console.log(liquors))
+}
