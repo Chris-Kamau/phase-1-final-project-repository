@@ -83,3 +83,24 @@ function getLiquors() {
     )
 }
 getLiquors()
+
+// function to collect data
+
+function collectFormData() {
+  let form = document.querySelector("#form")
+  form.addEventListener("submit", (e) => {
+    e.preventDefault()
+    let formData = {
+      image: e.target.image.value,
+      name: e.target.name.value,
+      price: e.target.price.value,
+      description: e.target.description.value,
+      origin: e.target.origin.value,
+      brand: e.target.brand.value,
+      quantity: e.target.quantity.value
+
+    }
+    console.log(formData)
+  })
+}
+collectFormData()
