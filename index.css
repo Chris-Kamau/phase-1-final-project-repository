@@ -14,6 +14,8 @@ body {
   }
   .navbar {
     font-weight: bold;
+    height: 100px;
+    padding: 20px;
 }
   .class{
     width: 18rem;
@@ -70,8 +72,4 @@ body {
     }
     
     
-     .navbar {
-      height: 100px;
-      padding: 20px;
-    }
-    
+     
