@@ -1,7 +1,10 @@
-// function to create table 
+// Function to create table 
 function addLiquor(liquor) {
-    let tableRow = document.createElement("tr")  // create table row element
-    tableRow.id = "table-row"  // set table row id
+    // Create a new row for the liquor
+    let tableRow = document.createElement("tr")
+    // Set the id of the row to "table-row"
+    tableRow.id = "table-row"
+    // Fill the row with data from the liquor object
     tableRow.innerHTML = `
       <th scope="row">${liquor.id}</th>
       <td>${liquor.image}</td>
@@ -13,33 +16,41 @@ function addLiquor(liquor) {
       <td>${liquor.quantity}</td>
       <td><button class="btn btn-success">Edit</button></td>
       <td><button class="btn btn-danger" id="delete">Delete</button></td>
-    `  // populate table row with liquor data
-    let deleteButton = tableRow.querySelector("#delete")  // select the delete button in the row
-    deleteButton.addEventListener("click", () => {  // add event listener to delete button
-      deleteLiquor(liquor.id)  // call deleteLiquor function with liquor id as parameter
-      tableRow.remove()  // remove the deleted row from the table
+    `
+    // Add an event listener to the "Delete" button to call deleteLiquor() and remove the row from the table
+    let deleteButton = tableRow.querySelector("#delete")
+    deleteButton.addEventListener("click", () => {
+      deleteLiquor(liquor.id)
+      tableRow.remove()
     })
-    document.querySelector("#table-body").append(tableRow)  // add the populated row to the table body
-}
+    // Add the row to the table body
+    document.querySelector("#table-body").append(tableRow)
+  }
   
-function getLiquors() {
-    fetch("http://localhost:5000/liquors")  // fetch liquor data from server
-    .then(res => res.json())
-    .then(liquors => 
-      liquors.forEach((liquor) => {
-        addLiquor(liquor)  // add each liquor to the table
-      })
+  // Function to get all liquors from the server and add them to the table
+  function getLiquors() {
+    // Make a GET request to the server for all liquors
+    fetch("http://localhost:5000/liquors")
+      .then(res => res.json())
+      .then(liquors => 
+        // For each liquor, add a row to the table
+        liquors.forEach((liquor) => {
+          addLiquor(liquor)
+        })
       )
-}
-getLiquors()  // call getLiquors function to populate the table with liquor data
+  }
+  // Call getLiquors() to populate the table with existing data
+  getLiquors()
   
-// function to collect data
-let formData;
-
-function collectFormData() {
-    let form = document.querySelector("#form")  // select the form element
-    form.addEventListener("submit", (e) => {  // add submit event listener to the form
-      e.preventDefault()  // prevent the form from submitting and refreshing the page
+  // Function to collect form data when the form is submitted
+  let formData;
+  function collectFormData() {
+    // Find the form element and add an event listener to it
+    let form = document.querySelector("#form")
+    form.addEventListener("submit", (e) => {
+      // Prevent the default form submission behavior
+      e.preventDefault()
+      // Collect the form data into an object
       formData = {
         image: e.target.image.value,
         name: e.target.name.value,
@@ -48,30 +59,33 @@ function collectFormData() {
         origin: e.target.origin.value,
         brand: e.target.brand.value,
         quantity: e.target.quantity.value
-      }  // populate the formData object with form data
-      postLiquors()  // call postLiquors function to add the new liquor to the server and table
+      }
+      // Call postLiquors() to send the data to the server
+      postLiquors()
     })
-}
-collectFormData()  // call collectFormData function to listen for form submission
-
-// function to add new liquor to server and table
-function postLiquors() {
+  }
+  // Call collectFormData() to set up the form submission behavior
+  collectFormData()
+  
+  // Function to send new liquor data to the server
+  function postLiquors() {
+    // Make a POST request to the server with the form data
     fetch("http://localhost:5000/liquors", {
-      method: "POST",  // set HTTP method to POST
+      method: "POST",
       headers: {
-        "Content-Type": "application/json"  // set request headers
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify(formData)  // convert form data to JSON and include it in the request body
+      body: JSON.stringify(formData)
     })
     .then(res => res.json())
-    .then(products => console.log(liquors))  // log the updated list of liquors to the console
-}
-
-// function to delete liquor from server and table
-function deleteLiquor(id) {
+    .then(products => console.log(liquors))
+  }
+  
+  // Function to delete a liquor from the server and remove its row from the table
+  function deleteLiquor(id) {
+    // Make a DELETE request to the server for the specified liquor id
     fetch(`http://localhost:5000/liquors/${id}`, {
-      method: "DELETE",  // set HTTP method
-
+      method: "DELETE",
       headers: {
         "Content-Type" : "application/json"
       }
