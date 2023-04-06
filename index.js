@@ -1,11 +1,11 @@
 // function to display liquor
 
-function displayLiquor(liquor){
+function displayLiquor(liquor) {
   let card = document.createElement("li")
   card.className = "card col-2 p-0 m-4"
-  card.dataset.id = liquor.id;
+  card.dataset.id = liquor.id
   card.innerHTML = `
-    <img src="${liquor.image}" class="card-img-top" alt="${liquor.name}">
+    <img src="${liquor.image}" class="card-img-top" alt="${liquor.name}" title="Click to view details">
     <div class="card-body">
       <h5 class="card-title">${liquor.name}</h5>
       <a href="#" class="btn btn-primary">Add to cart</a>
@@ -26,8 +26,14 @@ function displayLiquor(liquor){
     `
   })
 
-  document.querySelector("#item-list").append(card) 
+  card.addEventListener("mouseover", () => {
+    const image = card.querySelector(".card-img-top")
+    image.setAttribute("title", "Click to view details")
+  })
+
+  document.querySelector("#item-list").append(card)
 }
+
 
 // Function to fetch products from db.json
 function fetchLiquors(){

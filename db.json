@@ -99,6 +99,16 @@
       "brand": "Vodka",
       "quantity": "25",
       "id": 10
+    },
+    {
+      "image": "https://jayswines.com/wp-content/uploads/2015/04/Konyagi-750ml.jpg",
+      "name": "Konyagi 750ml",
+      "price": "850",
+      "description": "Konyagi has Citrus, tropical fruit and spicy notes. The flavouring is nice and not overdone. Smooth enough to drink on its own",
+      "origin": "Tanzania",
+      "brand": "Spirit",
+      "quantity": "25",
+      "id": 11
     }
   ]
 }
