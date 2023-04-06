@@ -56,17 +56,17 @@ function addLiquor(liquor) {
   collectFormData()
   
 //   // POST to database
-//   function postLiquors() {
-//     fetch("http://localhost:5000/liquors", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json"
-//       },
-//       body: JSON.stringify(formData)
-//     })
-//     .then(res => res.json())
-//     .then(products => console.log(liquors))
-//   }
+  function postLiquors() {
+    fetch("http://localhost:5000/liquors", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(res => res.json())
+    .then(products => console.log(liquors))
+  }
   
 
 // // Function to delete product
