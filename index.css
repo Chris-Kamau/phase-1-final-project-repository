@@ -71,5 +71,10 @@ body {
       font-weight: bold;
     }
     
+    .navbar-text.mx-auto {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
     
      

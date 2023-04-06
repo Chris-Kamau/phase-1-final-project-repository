@@ -35,6 +35,12 @@
                 <li><a class="dropdown-item" href="#">Wine</a></li>
               </ul>
             </li>
+            <li class="nav-item">
+              <span class="navbar-text mx-auto">
+                Place your order: 0722179020
+              </span>
+            </li>
+    
           </ul>
           <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -43,13 +49,33 @@
         </div>
       </div>
     </nav>
+    
     <h1>Rample Wines</h1>
    <main>
     <ul id="item-list" class="row">
 
     </ul>
    </main>
-   
+   <section id="feedback">
+    <h2>Feedback</h2>
+    <form id="formId">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" required>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="email" required>
+      </div>
+      <div class="mb-3">
+        <label for="feedback" class="form-label">Feedback</label>
+        <textarea class="form-control" id="feedback" rows="3" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </section>
+  
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <script src="/index.js"></script>
   
