@@ -34,26 +34,26 @@ function addLiquor(liquor) {
   getLiquors()
   
 //   // function to collect data
-//   let formData;
+  let formData;
   
-//   function collectFormData() {
-//     let form = document.querySelector("#form")
-//     form.addEventListener("submit", (e) => {
-//       e.preventDefault()
-//       formData = {
-//         image: e.target.image.value,
-//         name: e.target.name.value,
-//         price: e.target.price.value,
-//         description: e.target.description.value,
-//         origin: e.target.origin.value,
-//         brand: e.target.brand.value,
-//         quantity: e.target.quantity.value
+  function collectFormData() {
+    let form = document.querySelector("#form")
+    form.addEventListener("submit", (e) => {
+      e.preventDefault()
+      formData = {
+        image: e.target.image.value,
+        name: e.target.name.value,
+        price: e.target.price.value,
+        description: e.target.description.value,
+        origin: e.target.origin.value,
+        brand: e.target.brand.value,
+        quantity: e.target.quantity.value
   
-//       }
-//       postLiquors()
-//     })
-//   }
-//   collectFormData()
+      }
+      postLiquors()
+    })
+  }
+  collectFormData()
   
 //   // POST to database
 //   function postLiquors() {
