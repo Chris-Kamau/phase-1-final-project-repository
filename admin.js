@@ -70,15 +70,15 @@ function addLiquor(liquor) {
   
 
 // // Function to delete product
-// function deleteLiquor(id) {
-//     fetch(`http://localhost:5000/liquors/${id}`, {
-//       method: "DELETE",
-//       headers: {
-//         "Content-Type" : "application/json"
-//       }
-//     })
-//     .then(res => res.json())
-//     .then(data => console.log(data))
+function deleteLiquor(id) {
+    fetch(`http://localhost:5000/liquors/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type" : "application/json"
+      }
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
       
-//   }
+  }
   
