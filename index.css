@@ -12,6 +12,9 @@ body {
     margin-right: 0;
     margin-left: 0;
   }
+  .navbar {
+    font-weight: bold;
+}
   .class{
     width: 18rem;
   }
