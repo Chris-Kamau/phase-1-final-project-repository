@@ -1,9 +1,12 @@
 // function to display liquor
 
 function displayLiquor(liquor) {
+  // create a new <li> element
   let card = document.createElement("li")
+  // set its class and data attribute
   card.className = "card col-2 p-0 m-4"
   card.dataset.id = liquor.id
+  // set its HTML content
   card.innerHTML = `
     <img src="${liquor.image}" class="card-img-top" alt="${liquor.name}" title="Click to view details">
     <div class="card-body">
@@ -11,6 +14,7 @@ function displayLiquor(liquor) {
       <a href="#" class="btn btn-primary">Add to cart</a>
     </div>
   `
+  // add a click event listener to toggle the card content
   card.addEventListener("click", () => {
     card.innerHTML = `
       <img src="${liquor.image}" class="card-img-top" alt="${liquor.name}">
@@ -25,49 +29,48 @@ function displayLiquor(liquor) {
       </div>
     `
   })
-
+  // add a mouseover event listener to update the image title attribute
   card.addEventListener("mouseover", () => {
     const image = card.querySelector(".card-img-top")
     image.setAttribute("title", "Click to view details")
   })
-
+  // append the card to the #item-list element
   document.querySelector("#item-list").append(card)
 }
 
 
 // Function to fetch products from db.json
 function fetchLiquors(){
-fetch("http://localhost:5000/liquors")
-.then(res => res.json())
-.then((liquors) => {
-  liquors.forEach((liquor) => {
-    displayLiquor(liquor)
+  // make a GET request to the server
+  fetch("http://localhost:5000/liquors")
+  .then(res => res.json())
+  .then((liquors) => {
+    // iterate over the fetched liquors and display them
+    liquors.forEach((liquor) => {
+      displayLiquor(liquor)
+    })
   })
-})
 }
 
+// call the fetchLiquors function on page load
 fetchLiquors()
 
 
 // Function to handle form submission
 function handleFormSubmit(event) {
+  // prevent the default form submission behavior
   event.preventDefault()
-
-  // Clear input values
+  // clear the input values
   document.querySelector("#name").value = ""
   document.querySelector("#email").value = ""
   document.querySelector("#message").value = ""
-
-  // Display success message
+  // create a success message element and append it to the form
   const successMsg = document.createElement("div")
   successMsg.classList.add("alert", "alert-success")
   successMsg.setAttribute("role", "alert")
   successMsg.textContent = "Thank you for your feedback!"
   document.querySelector("#formId").append(successMsg)
-
-  // Send form data to server (not implemented)
 }
 
+// add a submit event listener to the form
 document.querySelector("#formId").addEventListener("submit", handleFormSubmit)
-
-
